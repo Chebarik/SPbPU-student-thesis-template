@@ -1,0 +1,11 @@
+.PHONY: build
+
+build:
+	# First LaTeX run
+	- pdflatex -output-directory=build -interaction=nonstopmode My_thesis.tex
+	# Run biber to process bibliography
+	- biber --output-directory=build build/My_thesis
+	# Second LaTeX run to include citations
+	- pdflatex -output-directory=build -interaction=nonstopmode My_thesis.tex
+	# Third LaTeX run to resolve all references
+	- pdflatex -output-directory=build -interaction=nonstopmode My_thesis.tex
